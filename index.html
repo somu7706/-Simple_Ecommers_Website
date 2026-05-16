@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Modern Fashion</title>
+    <meta name="description" content="Premium fashion store for shoes, shirts, hoodies, watches, and accessories.">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo" onclick="navigateTo('home')">AURA<span>.</span></a>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="active" onclick="navigateTo('home')">Home</a>
+                <a href="#shop" onclick="navigateTo('shop')">Shop</a>
+                <a href="#about" onclick="navigateTo('about')">About</a>
+                <a href="#contact" onclick="navigateTo('contact')">Contact</a>
+            </nav>
+
+            <div class="nav-icons">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn" onclick="navigateTo('login')">
+                    <i class="far fa-user"></i>
+                </button>
+                <button class="icon-btn">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="wishlist-badge">0</span>
+                </button>
+                <button class="icon-btn" onclick="navigateTo('cart')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                </button>
+                <button class="mobile-toggle" id="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (Pages will be toggled here) -->
+    <main id="main-content">
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <span class="subtitle">New Collection 2024</span>
+                    <h1>Elevate Your <br><span class="highlight">Streetwear</span> Game</h1>
+                    <p>Discover the latest trends in premium fashion. From exclusive sneakers to luxury accessories.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary" onclick="navigateTo('shop')">Shop Now</button>
+                        <button class="btn btn-secondary" onclick="navigateTo('shop')">Explore</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800"
+                        alt="Fashion Model" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section class="features">
+                <div class="feature">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders over $100</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure Payment</h3>
+                    <p>100% secure checkout</p>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="products-section">
+                <div class="section-header">
+                    <h2>Featured Products</h2>
+                    <a href="#shop" class="view-all" onclick="navigateTo('shop')">View All <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="product-grid" id="featured-products">
+                    <!-- Products injected by JS -->
+                </div>
+            </section>
+
+            <!-- Flash Sale Banner -->
+            <section class="flash-sale">
+                <div class="flash-content">
+                    <h2>Flash Sale!</h2>
+                    <p>Up to 50% off on selected items. Offer ends soon.</p>
+                    <div class="countdown">
+                        <div class="time-box"><span>12</span>Hours</div>
+                        <div class="time-box"><span>45</span>Mins</div>
+                        <div class="time-box"><span>30</span>Secs</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('shop')">Shop Sale</button>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="categories-section">
+                <h2>Shop by Category</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterCategory('shoes')">
+                        <div class="cat-overlay">
+                            <h3>Sneakers</h3>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterCategory('clothing')">
+                        <div class="cat-overlay">
+                            <h3>Streetwear</h3>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterCategory('accessories')">
+                        <div class="cat-overlay">
+                            <h3>Accessories</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- SHOP PAGE -->
+        <section id="page-shop" class="page">
+            <div class="page-header">
+                <h1>Shop All</h1>
+            </div>
+            <div class="shop-container">
+                <aside class="shop-sidebar">
+                    <div class="filter-group">
+                        <h3>Search</h3>
+                        <input type="text" id="search-input" placeholder="Search products..." class="search-input">
+                    </div>
+                    <div class="filter-group">
+                        <h3>Categories</h3>
+                        <ul class="filter-list" id="category-filters">
+                            <li class="active" data-filter="all">All Products</li>
+                            <li data-filter="shoes">Shoes</li>
+                            <li data-filter="clothing">Clothing</li>
+                            <li data-filter="accessories">Accessories</li>
+                            <li data-filter="watches">Watches</li>
+                        </ul>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Sort By</h3>
+                        <select id="sort-select" class="sort-select">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </aside>
+                <div class="shop-content">
+                    <div class="product-grid" id="all-products">
+                        <!-- Products injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT DETAILS PAGE -->
+        <section id="page-product" class="page">
+            <div class="product-details-container" id="product-details-content">
+                <!-- Content injected by JS -->
+            </div>
+        </section>
+
+        <!-- CART PAGE -->
+        <section id="page-cart" class="page">
+            <div class="page-header">
+                <h1>Shopping Cart</h1>
+            </div>
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items injected by JS -->
+                    <p class="empty-cart-msg">Your cart is empty.</p>
+                </div>
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span>$10.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="checkout()">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="page-about" class="page">
+            <div class="page-header">
+                <h1>Our Story</h1>
+            </div>
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Redefining Modern Fashion</h2>
+                    <p>Founded in 2026, AURA is a premium streetwear and modern fashion brand. We believe in
+                        high-quality materials, sustainable practices, and designs that stand out.</p>
+                    <p>Our mission is to provide you with fashion that not only looks good but feels empowering.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=800"
+                        alt="About Fashion" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="page-contact" class="page">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Have a question or need assistance? Reach out to us.</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Fashion Ave, NY 10001</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@aura.com</span>
+                    </div>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- LOGIN / REGISTER PAGE -->
+        <section id="page-login" class="page">
+            <div class="auth-container">
+                <div class="auth-box">
+                    <h2>Welcome Back</h2>
+                    <p>Login to access your account</p>
+                    <form onsubmit="event.preventDefault(); navigateTo('home');">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" required placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <p class="text-center mt-4">Don't have an account? <a href="#" class="highlight">Register</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo">AURA<span>.</span></a>
+                <p>Premium streetwear and modern fashion for the bold.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#home" onclick="navigateTo('home')">Home</a>
+                <a href="#shop" onclick="navigateTo('shop')">Shop</a>
+                <a href="#about" onclick="navigateTo('about')">About</a>
+                <a href="#contact" onclick="navigateTo('contact')">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <a href="#shop" onclick="filterCategory('shoes')">Shoes</a>
+                <a href="#shop" onclick="filterCategory('clothing')">Clothing</a>
+                <a href="#shop" onclick="filterCategory('accessories')">Accessories</a>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe for updates and exclusive offers.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AURA Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
